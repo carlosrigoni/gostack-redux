@@ -5,6 +5,7 @@ import { ICartState } from './types';
 
 const INITIAL_STATE: ICartState = {
   items: [],
+  failedStockCheck: [],
 };
 
 const cart: Reducer<ICartState> = (state = INITIAL_STATE, action) => {
@@ -29,7 +30,8 @@ const cart: Reducer<ICartState> = (state = INITIAL_STATE, action) => {
         break;
       }
       case 'ADD_PRODUCT_TO_CART_FAILURE': {
-        console.log('failure', action.payload);
+        draft.failedStockCheck.push(action.payload.productId);
+        break;
       }
       default: {
         return state;
